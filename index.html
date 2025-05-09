@@ -9,9 +9,14 @@
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #cce4ff, #ffffff);
+      background: linear-gradient(135deg, #d4ebff, #ffffff);
       color: #222;
       text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     .logo-bar {
       display: flex;
@@ -42,6 +47,7 @@
       margin: 30px auto;
       border-radius: 20px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      animation: fadeIn 1.5s ease-in;
     }
     .hero-card h1 {
       font-size: 1.8rem;
@@ -59,27 +65,18 @@
       border-radius: 30px;
       margin-bottom: 20px;
       font-weight: bold;
+      animation: pulse 2s infinite;
     }
-    .email-form {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 rgba(0, 114, 245, 0.4); }
+      70% { box-shadow: 0 0 20px rgba(0, 114, 245, 0.6); }
+      100% { box-shadow: 0 0 0 rgba(0, 114, 245, 0); }
     }
-    .email-form input[type="email"] {
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px 0 0 8px;
-      width: 240px;
-    }
-    .email-form button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #0072f5;
-      color: #fff;
-      border: none;
-      border-radius: 0 8px 8px 0;
-      cursor: pointer;
+    .countdown {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #0072f5;
+      margin: 20px 0;
     }
     .store-badges {
       display: flex;
@@ -101,7 +98,7 @@
   <div class="logo-bar">
     <img src="https://cdn-icons-png.flaticon.com/512/69/69524.png" alt="Home Icon" />
     <span class="highlight">Go</span>Broker
-    <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon" />
+    <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon" style="margin-left: 20px;" />
   </div>
 
   <div class="hero-card">
@@ -111,7 +108,8 @@
 
     <div class="hashtag">#BrokerJaruriHai</div>
 
-    
+    <div class="countdown" id="countdown">Launching in...</div>
+
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Available soon on</p>
     <div class="store-badges">
       <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" />
@@ -122,5 +120,24 @@
   <div class="footer">
     &copy; 2025 GoBroker.app • hello@gobroker.app
   </div>
+
+  <script>
+    const countdownEl = document.getElementById('countdown');
+    const launchDate = new Date("2025-06-15T00:00:00").getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const diff = launchDate - now;
+
+      if (diff <= 0) {
+        clearInterval(interval);
+        countdownEl.innerHTML = "We are now live!";
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        countdownEl.innerHTML = `Launching in: ${days} day${days !== 1 ? 's' : ''}`;
+      }
+    }, 1000);
+  </script>
+
 </body>
 </html>
