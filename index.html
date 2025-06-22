@@ -89,6 +89,58 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .testimonial-scroll {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .testimonial-card {
+      min-width: 260px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 16px;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    .testimonial-card img {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 2px solid #ddd;
+    }
+
+    form {
+      background: #f5f7fa;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    input, textarea, button {
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #2563EB;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
     footer {
       padding: 24px;
       text-align: center;
@@ -99,7 +151,9 @@
 </head>
 <body>
   <header>
-    <img src="assets/GoBro monogram file.png" alt="GoBro Logo" height="40">
+    <div style="display: flex; align-items: center;">
+      <img src="assets/GoBro monogram file.png" alt="GoBro Logo" style="height: 72px; width: auto; max-height: 72px; padding: 4px 0; margin-right: 12px;">
+    </div>
     <nav class="nav-links" id="navLinks">
       <a href="#solutions">Solutions</a>
       <a href="#careers">Careers</a>
@@ -119,21 +173,53 @@
     <img src="assets/vertical/vertical4.png" width="100%" style="margin-bottom: 24px;">
   </section>
 
-  <section>
-    <h2>Testimonials</h2>
-    <p><strong>Dilip Naik</strong><br>“Being part of GoBro’s testing phase was eye-opening. It’s built for real brokers.”</p>
-    <p><strong>Jason Christopher</strong><br>“I’ve never seen collaboration flow this easily. Excited to go full swing.”</p>
-    <p><strong>Natasha Bajaj</strong><br>“We’ve been waiting for something like this. It just gets how brokers work.”</p>
+  <section id="testimonials">
+    <h2 style="text-align: center;">What Brokers Say</h2>
+    <div class="testimonial-scroll">
+      <div class="testimonial-card">
+        <img src="assets/testimonials/jason.png" alt="Jason">
+        <h4>Jason Christopher</h4>
+        <p><em>Broker, Dubai</em></p>
+        <p>“I’ve never seen collaboration flow this easily. Excited to go full swing.”</p>
+      </div>
+      <div class="testimonial-card">
+        <img src="assets/testimonials/natasha.png" alt="Natasha">
+        <h4>Natasha Bajaj</h4>
+        <p><em>Broker, Goa</em></p>
+        <p>“We’ve been waiting for something like this. It just gets how brokers work.”</p>
+      </div>
+      <div class="testimonial-card">
+        <img src="assets/testimonials/dilip.png" alt="Dilip">
+        <h4>Dilip Naik</h4>
+        <p><em>Broker, Goa</em></p>
+        <p>“Being part of GoBro’s testing phase was eye-opening. It’s built for real brokers.”</p>
+      </div>
+    </div>
   </section>
 
   <section>
     <h2 onclick="toggleForm('brokerForm')" style="cursor:pointer;">🧾 Brokers — Register Here</h2>
     <div id="brokerForm" style="display:none;">
       <form action="https://formsubmit.co/7faf22e1356f58288cc24793306cb0af" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="text" name="city" placeholder="City" required><br>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="city" placeholder="City" required>
         <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2 onclick="toggleForm('demoForm')" style="cursor:pointer;">📅 Request a Demo</h2>
+    <div id="demoForm" style="display:none;">
+      <form action="https://formsubmit.co/7faf22e1356f58288cc24793306cb0af" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="date" name="preferred_date" required>
+        <input type="time" name="start_time" required>
+        <input type="time" name="end_time" required>
+        <textarea name="message" placeholder="Optional message"></textarea>
+        <button type="submit">Schedule Demo</button>
       </form>
     </div>
   </section>
@@ -143,22 +229,10 @@
     <p>We're hiring Verification Desk Executives. <br>Read KRA → Apply below:</p>
     <div id="careerForm" style="display:none;">
       <form action="https://formsubmit.co/7faf22e1356f58288cc24793306cb0af" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <textarea name="experience" placeholder="Why you're a good fit" required></textarea><br>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="experience" placeholder="Why you're a good fit" required></textarea>
         <button type="submit">Apply Now</button>
-      </form>
-    </div>
-  </section>
-
-  <section>
-    <h2 onclick="toggleForm('demoForm')" style="cursor:pointer;">📅 Request a Demo</h2>
-    <div id="demoForm" style="display:none;">
-      <form action="https://formsubmit.co/7faf22e1356f58288cc24793306cb0af" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="datetime-local" name="preferred_time" required><br>
-        <button type="submit">Schedule Demo</button>
       </form>
     </div>
   </section>
